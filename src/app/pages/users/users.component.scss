@@ -1,0 +1,274 @@
+.users-container {
+  padding: 20px;
+  color: var(--text-color);
+}
+
+/* ================= VARIABLES ================= */
+
+:root {
+  --card-bg: #ffffff;
+  --table-head: #f4f6f9;
+  --border-color: #e5e7eb;
+  --text-color: #111827;
+  --label-color: #0f172a;
+}
+
+/* 🌙 APP DARK MODE (IMPORTANT) */
+body.dark {
+  --card-bg: #1f2937;
+  --table-head: #020617;
+  --border-color: #374151;
+  --text-color: #f3f4f6;
+  --label-color: #e2e8f0;
+}
+
+/* ================= DESKTOP TABLE ================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  color: var(--text-color);
+}
+
+thead {
+  background: var(--table-head);
+}
+
+th, td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  font-weight: 600;
+}
+
+/* STATUS */
+
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.active {
+  background: #22c55e20;
+  color: #22c55e;
+}
+
+.status.blocked {
+  background: #ef444420;
+  color: #ef4444;
+}
+
+/* BUTTON */
+
+.action-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  background: #3b82f6;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.action-btn:hover {
+  opacity: 0.85;
+}
+
+.action-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ================= MOBILE CARD VIEW ================= */
+
+@media (max-width: 768px) {
+
+  .users-container {
+    padding: 0 10px;
+  }
+
+  table {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  thead {
+    display: none;
+  }
+
+  table,
+  tbody,
+  tr {
+    display: block;
+  }
+
+  tr {
+    margin-bottom: 16px;
+    border-radius: 12px;
+    background: var(--card-bg);
+    border: 1px solid whitesmoke;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.10);
+    padding: 14px;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  /* LABEL */
+  td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--label-color);
+    flex-shrink: 0;
+  }
+
+  /* ACTION CENTER */
+  td[data-label="Action"]::before {
+    content: "";
+  }
+
+  td[data-label="Action"] {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .action-btn {
+    width: 140px;
+    padding: 8px 0;
+    border-radius: 8px;
+  }
+}
+
+
+/* ===============================
+   TOOLBAR CONTAINER
+================================= */
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+/* ===============================
+   SEARCH BOX
+================================= */
+
+.toolbar input {
+  flex: 1;
+  min-width: 230px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+  transition: all 0.25s ease;
+}
+
+.toolbar input::placeholder {
+  color: #64748b;
+}
+
+.toolbar input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.18);
+}
+
+/* ===============================
+   ATTRACTIVE DROPDOWN
+================================= */
+
+.toolbar select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  padding: 11px 40px 11px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  /* custom arrow */
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%2364748b' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.toolbar select:hover {
+  border-color: #3b82f6;
+}
+
+.toolbar select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.18);
+  outline: none;
+}
+
+/* ===============================
+   🌙 DARK MODE (IMPORTANT FIX)
+   Angular encapsulation bypass
+================================= */
+
+:host-context(body.dark) .toolbar input {
+  background: #020617;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+:host-context(body.dark) .toolbar input::placeholder {
+  color: #94a3b8;
+}
+
+:host-context(body.dark) .toolbar select {
+  background-color: #020617;
+  border-color: #334155;
+  color: #e2e8f0;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%2394a3b8' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================= */
+
+@media (max-width: 768px) {
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .toolbar input,
+  .toolbar select {
+    // width: 100%;
+    font-size: 15px;
+  }
+}

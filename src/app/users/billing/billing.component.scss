@@ -1,0 +1,281 @@
+.billing-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  .billing-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* PRODUCTS */
+.products {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* SEARCH */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 50%;
+  padding: 6px 10px;
+  border: 2px solid #ac8080;
+  border-radius: 10px;
+  background: #f1f1f3ef;
+  height: 13px;
+
+  input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    background: #f1f1f3ef;
+  }
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.products-table th,
+.products-table td {
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  text-align: center;
+}
+
+/* ADD BUTTON */
+.add-btn {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* BILL */
+.bill {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.bill table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bill th,
+.bill td {
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  text-align: center;
+}
+
+/* QTY */
+.qty-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  input {
+    width: 50px;
+    padding: 4px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+  }
+}
+
+.remove {
+  color: red;
+  cursor: pointer;
+}
+
+/* SUMMARY */
+.summary {
+  margin-top: 12px;
+}
+
+.discount input {
+  width: 90%;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  margin: 6px 0;
+}
+
+.totals {
+  margin-top: 8px;
+}
+
+.create-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #16a34a;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.create-btn:disabled {
+  opacity: 0.6;
+}
+
+/* STOCK */
+.out {
+  color: red;
+  font-weight: 600;
+}
+
+.products, .bill {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.products-table,
+.bill table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.products-table th,
+.products-table td,
+.bill th,
+.bill td {
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  text-align: center;
+}
+
+.add-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.out {
+  color: red;
+  font-weight: 600;
+}
+
+.summary {
+  margin-top: 12px;
+}
+
+.create-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  background: #16a34a;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+}
+
+.pay-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.upi-btn {
+  flex: 1;
+  background: #0ea5e9;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+}
+
+.cash-btn {
+  flex: 1;
+  background: #22c55e;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+}
+
+/* QR MODAL */
+.qr-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-modal {
+  background: rgba(9, 14, 81, 0.645);
+  padding: 20px;
+  border-radius: 14px;
+  width: 250px;
+  text-align: center;
+
+  input{
+    // background-color: #0ea5e9;
+        border-radius: 10px;
+    border: 1px solid bisque;
+    margin-bottom: 5px;
+  }
+ input::placeholder {
+  color: #101010;
+  text-align: center;
+}
+}
+
+.qr-img {
+  width: 90%;
+  margin: 12px 0;
+  border-radius: 10px;
+}
+
+.confirm-btn {
+  background: #16a34a;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 8px;
+}
+
+.close-btn {
+  margin-top: 6px;
+  width: 100%;
+  padding: 8px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}

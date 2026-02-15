@@ -1,0 +1,72 @@
+.sales-dashboard {
+  padding: 20px;
+}
+
+/* ===============================
+   TOP CARDS
+================================ */
+.top-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.stat {
+  padding: 16px;
+  border-radius: 16px;
+  color: white;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.2);
+}
+
+.amount {
+  font-size: 22px;
+  font-weight: 700;
+  white-space: nowrap;      // ❌ break नको
+  overflow: hidden;         // ❌ बाहेर नको
+  text-overflow: ellipsis;  // ✅ safe
+}
+
+
+.label {
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* COLORS */
+.today { background: linear-gradient(135deg,#2563eb,#3b82f6); }
+.month { background: linear-gradient(135deg,#16a34a,#22c55e); }
+.life  { background: linear-gradient(135deg,#0f766e,#14b8a6); }
+.low   { background: linear-gradient(135deg,#dc2626,#ef4444); cursor: pointer; }
+.expiry{ background: linear-gradient(135deg,#f59e0b,#fbbf24); cursor: pointer; }
+
+/* ===============================
+   CONTROLS
+================================ */
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+select {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+}
+
+/* ===============================
+   CHART
+================================ */
+.chart-box {
+  padding: 18px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+}
+
+/* DARK MODE */
+body.dark .chart-box {
+  background: #020617;
+}

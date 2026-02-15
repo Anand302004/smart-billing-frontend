@@ -1,0 +1,74 @@
+.privacy-container {
+  max-width: 520px;
+  margin: auto;
+  padding: 20px;
+  color: var(--dashboard-text);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #88a8e9;
+  transition: 0.3s;
+}
+
+.tabs button.active {
+  background: #6366f1;
+  color: white;
+}
+
+/* Card */
+.form-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.update-btn {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.update-btn:hover {
+  background: #16a34a;
+}
+
+.info-box {
+  text-align: center;
+  opacity: 0.8;
+}
+
+.message {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 600;
+}

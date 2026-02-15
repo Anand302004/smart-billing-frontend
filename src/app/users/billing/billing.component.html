@@ -1,0 +1,121 @@
+<div class="billing-layout">
+
+  <!-- PRODUCTS -->
+  <div class="products">
+
+    <div class="products-header">
+      <h3>Products</h3>
+
+      <div class="search-box">
+        <span class="icon">🔍</span>
+        <input type="text" placeholder="Search product" [(ngModel)]="searchText" (input)="searchProducts()">
+      </div>
+    </div>
+
+    <table class="products-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let p of filteredProducts">
+          <td>{{ p.name }}</td>
+          <td>₹{{ p.price }}</td>
+          <td>
+            <span [class.out]="p.quantity <= 0">
+              {{ p.quantity }}
+            </span>
+          </td>
+          <td>
+            <button class="add-btn" (click)="addToBill(p)" [disabled]="p.quantity <= 0">
+              Add
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <!-- BILL -->
+  <div class="bill" *ngIf="billItems.length">
+
+    <h3>Bill Summary</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Amount</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let i of billItems">
+          <td>
+            {{ i.name }}
+            <small>({{ i.unit }})</small>
+          </td>
+
+          <td class="qty-cell">
+            <input type="number" [step]="i.step" [min]="i.unit === 'pcs' ? 1 : 0.01" [(ngModel)]="i.quantity"
+              (input)="updateQty(i)">
+
+          </td>
+          <td>₹{{ i.total }}</td>
+          <td>
+            <span class="remove" (click)="removeItem(i)">✖</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="summary">
+      <div class="discount">
+        <label>Discount (%)</label>
+        <input type="number" [(ngModel)]="discountPercent" (input)="calculateTotal()">
+      </div>
+
+      <div class="totals">
+        <p>Total: ₹{{ total }}</p>
+        <h2>Payable: ₹{{ finalTotal }}</h2>
+      </div>
+
+      <!-- CREATE BILL -->
+      <button class="create-btn" (click)="createBill()" [disabled]="creatingBill">
+        {{ creatingBill ? 'Creating...' : 'Create Bill' }}
+      </button>
+
+      <!-- PAYMENT BUTTONS -->
+      <div class="pay-actions" *ngIf="billId">
+        <button class="upi-btn" (click)="payByUPI()">Pay via UPI</button>
+        <button class="cash-btn" (click)="payByCash()">Cash Payment</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- QR MODAL -->
+<div class="qr-overlay" *ngIf="qrCode">
+  <div class="qr-modal">
+    <h3>Scan & Pay</h3>
+    <p class="amount">₹{{ qrAmount }}</p>
+
+    <img [src]="qrCode" class="qr-img">
+
+    <input type="text" placeholder="Enter UPI Txn ID" [(ngModel)]="upiTxnId">
+
+    <button class="confirm-btn" (click)="confirmUPI()">Confirm Payment</button>
+
+    <button class="close-btn" (click)="closeQR()">Close</button>
+  </div>
+</div>

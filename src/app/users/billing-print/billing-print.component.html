@@ -1,0 +1,53 @@
+
+
+<div class="receipt" id="receipt" *ngIf="!loading">
+
+  <h2 class="center">{{ shop.shop_name }}</h2>
+  <p class="center" *ngIf="shop.address">{{ shop.address }}</p>
+  <p class="center" *ngIf="shop.mobile_number">
+    📞 {{ shop.mobile_number }}
+  </p>
+
+  <hr>
+
+  <p>Bill No: {{ bill.id }}</p>
+  <p>Date: {{ bill.created_at | date:'dd/MM/yyyy hh:mm a' }}</p>
+
+  <hr>
+
+  <table>
+    <tr *ngFor="let i of bill.items">
+      <td>{{ i.name }} × {{ i.quantity }}</td>
+      <td class="right">
+        ₹{{ (i.price * i.quantity).toFixed(2) }}
+      </td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <p>
+    Total
+    <span class="right">₹{{ totalAmount.toFixed(2) }}</span>
+  </p>
+
+  <p *ngIf="discountAmount > 0">
+    Discount
+    <span class="right">- ₹{{ discountAmount.toFixed(2) }}</span>
+  </p>
+
+  <h3>
+    Payable
+    <span class="right">₹{{ payableAmount.toFixed(2) }}</span>
+  </h3>
+
+  <hr>
+
+  <p class="center">Payment: {{ bill.payment_status }}</p>
+  <p class="center">🙏 Thank You 🙏</p>
+</div>
+<div class="print-actions no-print">
+  <button class="btn back" (click)="goBack()">← Back</button>
+  <button class="btn print" (click)="printBill()">🖨 Print</button>
+  <button class="btn pdf" (click)="downloadPdf()">⬇ PDF</button>
+</div>

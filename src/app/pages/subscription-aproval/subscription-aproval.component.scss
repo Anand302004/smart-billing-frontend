@@ -1,0 +1,160 @@
+/* ===============================
+   TITLE
+================================= */
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #0f7fe8;
+}
+
+/* ===============================
+   TABLE WRAPPER
+================================= */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* ===============================
+   TABLE
+================================= */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Header */
+.user-table thead {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+.user-table th,
+.user-table td {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Rows */
+.user-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.2s ease;
+}
+
+.user-table tbody tr:hover {
+  background: #3967b0;
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================= */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.action-buttons button {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-buttons button:first-child {
+  background: #16a34a;
+  color: #fff;
+}
+
+.action-buttons button:first-child:hover {
+  background: #19773c;
+}
+
+.action-buttons button:last-child {
+  background: #dc2626;
+  color: #fff;
+}
+
+.action-buttons button:last-child:hover {
+  background: #700f0f;
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================= */
+@media (max-width: 768px) {
+
+  .table-wrapper {
+    padding: 0 10px;
+    overflow-x: hidden;
+  }
+
+  .user-table {
+    background: transparent;
+    box-shadow: none;
+    width: 100%;
+  }
+
+  .user-table thead {
+    display: none;
+  }
+
+  .user-table,
+  .user-table tbody,
+  .user-table tr {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .user-table tr {
+    margin: 0 0 16px 0;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    padding: 14px;
+    box-sizing: border-box;
+  }
+
+  .user-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .user-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #475569;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  .user-table td:last-child {
+    padding-top: 12px;
+  }
+
+  /* ACTION BUTTONS */
+  .action-buttons {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+  }
+
+  .action-buttons button {
+    flex: 1;
+    padding: 8px 0;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+}

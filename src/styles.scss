@@ -1,1 +1,238 @@
-/* You can add global styles to this file, and also import other style files */
+/* ========================== */
+/* Material Buttons & Inputs  */
+/* ========================== */
+
+/* Blue primary color for Material buttons & inputs (override prebuilt theme if needed) */
+button.mat-raised-button {
+  background-color: #1976d2; /* Blue primary */
+  color: white;
+}
+
+/* Material form field outline color */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #1976d2; /* Blue outline */
+}
+
+/* Cards background (Material card override, optional) */
+.auth-card {
+  background: #ffffff;
+}
+
+/* ========================== */
+/* Existing CSS - UNCHANGED   */
+/* ========================== */
+
+:root {
+  color: #020617;
+}
+
+/* 🌙 Global Dark Mode */
+body.dark {
+  background: #0f172a;
+  // color: #e5e7eb;
+}
+
+/* Header */
+body.dark .header {
+  background: #020617;
+}
+
+/* Sidebar */
+body.dark .sidebar {
+  background: #020617;
+}
+
+body.dark .sidebar li:hover {
+  background: #1e293b;
+}
+
+/* Content area */
+body.dark .content {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+/* Cards */
+body.dark .card {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+/* Tables */
+body.dark table {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+body.dark th {
+  background: #020617;
+}
+
+body.dark td {
+  border-color: #1e293b;
+}
+
+/* Buttons */
+body.dark button {
+  color: #e5e7eb;
+}
+
+/* ============================= */
+/* 🔥 USERS PAGE DARK MODE FIX */
+/* ============================= */
+
+body.dark {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Table text – force solid color */
+body.dark .user-table,
+body.dark .user-table td,
+body.dark .user-table th,
+body.dark .user-table p,
+body.dark .user-table span {
+  color: #e5e7eb !important;
+  opacity: 1 !important;
+}
+
+/* Remove blur shadows */
+body.dark .user-table tr {
+  box-shadow: none !important;
+}
+
+/* Mobile card background */
+body.dark .user-table tr {
+  background: #020617;
+}
+
+/* Table labels (mobile) */
+body.dark .user-table td::before {
+  color: #94a3b8;
+  opacity: 1;
+}
+
+/* Action button */
+body.dark .action-btn {
+  color: #e5e7eb;
+}
+
+/* Dropdown */
+body.dark .dropdown {
+  background: #020617;
+}
+
+body.dark .dropdown button {
+  color: #e5e7eb;
+}
+
+/* ================================ */
+/* 🔥 MOBILE USERS TABLE DARK FIX */
+/* ================================ */
+
+@media (max-width: 768px) {
+
+  body.dark .user-table,
+  body.dark .user-table tr,
+  body.dark .user-table td {
+    background: #020617 !important;
+    color: #e5e7eb !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  /* mobile label text */
+  body.dark .user-table td::before {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  /* prevent text blur */
+  body.dark .user-table td {
+    text-shadow: none !important;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* action button */
+  body.dark .action-btn {
+    color: #e5e7eb !important;
+  }
+
+  /* dropdown fix */
+  body.dark .dropdown {
+    background: #020617 !important;
+    box-shadow: none !important;
+  }
+
+  body.dark .dropdown button {
+    color: #e5e7eb !important;
+  }
+}
+
+
+// /* ================================ */
+// /* 🔥 ANGULAR MATERIAL DARK MODE FIX */
+// /* ================================ */
+
+// body.dark .cdk-overlay-pane .mat-mdc-select-panel {
+//   background: #020617 !important;
+//   color: #e5e7eb !important;
+// }
+
+// body.dark .cdk-overlay-pane .mat-mdc-option {
+//   color: #e5e7eb !important;
+// }
+
+// body.dark .cdk-overlay-pane .mat-mdc-option:hover {
+//   background: #1e293b !important;
+// }
+
+// body.dark .cdk-overlay-pane .mat-mdc-option.mdc-list-item--selected {
+//   background: #1e293b !important;
+// }
+
+// body.dark .mat-mdc-form-field {
+//   color: #e5e7eb;
+// }
+
+// body.dark .mat-mdc-input-element {
+//   color: #e5e7eb !important;
+// }
+
+// body.dark .mdc-notched-outline__leading,
+// body.dark .mdc-notched-outline__notch,
+// body.dark .mdc-notched-outline__trailing {
+//   border-color: #334155 !important;
+// }
+
+// body.dark .mat-mdc-floating-label {
+//   color: #94a3b8 !important;
+// }
+
+// /* Table */
+// body.dark .mat-mdc-table {
+//   background: #020617;
+// }
+
+// body.dark .mat-mdc-header-cell,
+// body.dark .mat-mdc-cell {
+//   color: #e5e7eb;
+// }
+
+// /* Responsive */
+// @media (max-width: 768px) {
+//   .mat-mdc-table {
+//     font-size: 13px;
+//   }
+
+//   button.mat-icon-button {
+//     transform: scale(0.9);
+//   }
+// }
+
+
+/* ========================== */
+/* END OF FILE                */
+/* ========================== */

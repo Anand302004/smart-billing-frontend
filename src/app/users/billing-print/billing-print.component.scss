@@ -1,0 +1,202 @@
+/* ===============================
+   RECEIPT CONTAINER
+================================ */
+.receipt {
+  width: 340px;
+  margin: 20px auto;
+  background: #fff;
+  color: #111;
+  padding: 14px 16px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  border: 1px solid #ddd;
+}
+
+/* ===============================
+   COMMON
+================================ */
+.center {
+  text-align: center;
+}
+
+.right {
+  float: right;
+}
+
+hr {
+  border: none;
+  border-top: 1px dashed #999;
+  margin: 10px 0;
+}
+
+/* ===============================
+   SHOP HEADER
+================================ */
+.receipt h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.receipt p {
+  margin: 3px 0;
+  color: #333;
+}
+
+/* ===============================
+   BILL META
+================================ */
+.receipt > p {
+  font-size: 12px;
+  color: #444;
+}
+
+/* ===============================
+   ITEMS TABLE
+================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+}
+
+td {
+  padding: 4px 0;
+  font-size: 13px;
+}
+
+td.right {
+  text-align: right;
+  font-weight: 500;
+}
+
+/* ===============================
+   TOTAL SECTION
+================================ */
+h3 {
+  margin: 8px 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+h3 .right {
+  font-size: 16px;
+}
+
+/* ===============================
+   PAYMENT STATUS
+================================ */
+.receipt .center:last-of-type {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* ===============================
+   THANK YOU
+================================ */
+.receipt .center:last-child {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #555;
+}
+
+/* ===============================
+   BUTTONS (SCREEN ONLY)
+================================ */
+.print-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.print-actions .btn {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.print-actions .btn.print {
+  background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+  box-shadow: 0 6px 20px rgba(14,165,233,0.35);
+}
+
+.print-actions .btn.pdf {
+  background: linear-gradient(135deg, #16a34a, #4ade80);
+  box-shadow: 0 6px 20px rgba(22,163,74,0.35);
+}
+
+.print-actions .btn.back {
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  box-shadow: 0 6px 20px rgba(239,68,68,0.35);
+}
+
+/* hover / active */
+.print-actions .btn:hover { filter: brightness(1.15); transform: scale(1.05); }
+.print-actions .btn:active { transform: scale(0.97); }
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================ */
+@media (max-width: 420px) {
+  .print-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .print-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===============================
+   FORCE LIGHT MODE FOR BILL
+================================ */
+.receipt,
+.receipt table,
+.receipt tr,
+.receipt td,
+.receipt p,
+.receipt h2,
+.receipt h3 {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+.receipt table { border-collapse: collapse; }
+.receipt td { border: none; }
+.receipt hr { border-top: 1px dashed #888 !important; }
+
+/* ===============================
+   PRINT ONLY RECEIPT (Small size)
+================================ */
+@media print {
+  body { background: #fff !important; }
+  
+  body * { visibility: hidden !important;}       /* hide everything else */
+  .receipt, .receipt * { visibility: visible; }
+
+  .receipt {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 340px;         /* small receipt width */
+    padding: 14px 16px;
+    margin: 20px auto;
+  }
+
+  .no-print { display: none !important; }
+}

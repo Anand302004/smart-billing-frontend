@@ -1,0 +1,211 @@
+/* ===============================
+   CONTAINER
+================================= */
+
+.subscription-users-container {
+  padding: 20px;
+  color: var(--text-color);
+}
+
+.subscription-users-container h2 {
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+/* ===============================
+   VARIABLES
+================================= */
+
+:root {
+  --card-bg: #ffffff;
+  --table-head: #f4f6f9;
+  --border-color: #e5e7eb;
+  --text-color: #111827;
+  --label-color: #0f172a;
+}
+
+body.dark {
+  --card-bg: #1f2937;
+  --table-head: #020617;
+  --border-color: #374151;
+  --text-color: #f3f4f6;
+  --label-color: #e2e8f0;
+}
+
+/* ===============================
+   TOOLBAR (SEARCH + FILTER)
+================================= */
+
+.toolbar {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+/* SEARCH */
+
+.toolbar input {
+  flex: 1;
+  min-width: 240px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  font-size: 14px;
+  transition: 0.25s;
+}
+
+.toolbar input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.18);
+  outline: none;
+}
+
+/* FILTER SELECT */
+
+.toolbar select {
+  appearance: none;
+  padding: 11px 40px 11px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%2364748b' height='20' viewBox='0 0 24 24' width='20'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/* DARK MODE TOOLBAR */
+
+:host-context(body.dark) .toolbar input,
+:host-context(body.dark) .toolbar select {
+  background: #020617;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+/* ===============================
+   TABLE DESIGN
+================================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+}
+
+thead {
+  background: var(--table-head);
+}
+
+th {
+  text-align: left;
+  padding: 15px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+}
+
+td {
+  padding: 14px 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr {
+  transition: 0.2s;
+}
+
+tbody tr:hover {
+  background: rgba(59,130,246,0.05);
+}
+
+/* ===============================
+   PLAN BADGE
+================================= */
+
+.plan {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.plan.basic {
+  background: #38bdf820;
+  color: #0284c7;
+}
+
+.plan.pro {
+  background: #a855f720;
+  color: #a855f7;
+}
+
+/* ===============================
+   PAYMENT STATUS
+================================= */
+
+.payment {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.payment.success {
+  background: #22c55e20;
+  color: #22c55e;
+}
+
+.payment.pending {
+  background: #f59e0b20;
+  color: #f59e0b;
+}
+
+/* ===============================
+   MOBILE CARD VIEW
+================================= */
+
+@media (max-width: 768px) {
+
+  table {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  thead {
+    display: none;
+  }
+
+  table,
+  tbody,
+  tr {
+    display: block;
+  }
+
+  tr {
+    background: var(--card-bg);
+    border-radius: 14px;
+    margin-bottom: 14px;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--label-color);
+  }
+}

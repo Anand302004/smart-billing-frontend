@@ -1,0 +1,100 @@
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background: #f5f6fa;
+}
+
+.signup-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: background 0.3s, color 0.3s;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.full {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+button.mat-raised-button {
+  flex: 1;
+  font-weight: 500;
+  padding: 0.8rem;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+button.mat-raised-button:hover {
+  background-color: #115293;
+}
+
+/* OTP Button Highlight */
+.otp-btn {
+  background-color: #f59e0b !important; /* amber */
+  color: white !important;
+}
+
+.otp-btn:hover {
+  background-color: #b45309 !important;
+}
+
+/* Dark Mode */
+body.dark .signup-card {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+body.dark .signup-card input.mat-input-element {
+  color: #e5e7eb;
+}
+
+body.dark .signup-card .mat-form-field-outline {
+  color: #e5e7eb;
+}
+
+body.dark button.mat-raised-button {
+  color: #e5e7eb;
+}
+
+body.dark .otp-btn {
+  background-color: #facc15 !important;
+}
+
+/* Login link */
+.login-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+.login-link a {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+.success-snackbar {
+  background: #16a34a;
+  color: white;
+}

@@ -1,0 +1,65 @@
+<div class="admin-panel">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="left">
+      <button class="menu-btn" (click)="toggleSidebar()">☰</button>
+
+      <div class="brand">
+        <img src="logo/my-logo.png" alt="Anand Logo" class="logo-big">
+        <span class="brand-text">My Shop</span>
+      </div>
+    </div>
+
+   
+  </header>
+
+  <div class="main">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" [class.open]="sidebarOpen">
+      <ul>
+        <li routerLink="/users/dashboard"> 🏠 Dashboard</li>
+        <li routerLink="/users/sales"> 📊 Sales</li>
+        <li routerLink="/users/products"> 📦 Stocks</li>
+        <li routerLink="/users/billing"> 🧾 Billing</li>
+        <li routerLink="/users/billing/history"> 📜 Billing History</li>
+
+        <!-- SETTINGS -->
+        <li (click)="toggleSettings()" class="settings-item">
+          ⚙ Settings
+        </li>
+
+         <ul class="settings-dropdown" *ngIf="settingsOpen">
+
+          <li (click)="toggleTheme()">
+            {{ isDarkMode ? '☀ Light Mode' : '🌙 Dark Mode' }}
+          </li>
+
+          <!-- ✅ NEW PRIVACY OPTION -->
+          <li (click)="togglePrivacy()">
+            🔒 Privacy
+          </li>
+
+          <!-- ✅ PRIVACY SUB MENU -->
+          <ul *ngIf="privacyOpen" class="privacy-dropdown">
+            <li routerLink="/users/userPrivacy"> 🛠️ Update </li>
+
+            <li class="logout" (click)="logout()"> ⏻ Logout</li>
+          </ul>
+
+        </ul>
+
+      </ul>
+    </aside>
+
+    <!-- Overlay -->
+    <div class="overlay" *ngIf="sidebarOpen" (click)="toggleSidebar()"></div>
+
+    <!-- Content -->
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+
+  </div>
+</div>

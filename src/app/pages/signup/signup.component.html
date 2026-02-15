@@ -1,0 +1,47 @@
+<div class="signup-container">
+  <mat-card class="signup-card">
+    <h2 class="title">Create Your Account</h2>
+
+    <form [formGroup]="signupForm" (ngSubmit)="submit()">
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter your full name">
+        <mat-error *ngIf="signupForm.get('name')?.invalid">Name required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Enter your email">
+        <mat-error *ngIf="signupForm.get('email')?.invalid">Valid email required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" placeholder="Minimum 6 characters">
+        <mat-error *ngIf="signupForm.get('password')?.invalid">Minimum 6 characters</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full" *ngIf="otpSent">
+        <mat-label>OTP</mat-label>
+        <input matInput type="number" formControlName="otp" placeholder="Enter OTP">
+        <mat-error *ngIf="signupForm.get('otp')?.invalid">OTP needed</mat-error>
+      </mat-form-field>
+
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="button" (click)="generateOtp()" class="otp-btn">
+          Send OTP
+        </button>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid" class="submit-btn">
+          Create Account
+        </button>
+      </div>
+
+      <p class="login-link">
+        Already have an account? <a routerLink="/login">Login</a>
+      </p>
+
+    </form>
+  </mat-card>
+</div>

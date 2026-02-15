@@ -1,0 +1,65 @@
+<div class="history-container">
+
+  <h2>Billing History</h2>
+
+  <!-- FILTERS + EXPORT -->
+  <div class="history-actions">
+    <div class="filters">
+      <input type="date" [(ngModel)]="fromDate" placeholder="From">
+      <input type="date" [(ngModel)]="toDate" placeholder="To">
+
+      <select [(ngModel)]="paymentMode">
+        <option value="">All</option>
+        <option value="CASH">Cash</option>
+        <option value="UPI">UPI</option>
+      </select>
+
+      <button class="btn-apply" (click)="load()">Apply</button>
+    </div>
+
+    <button class="btn-export" (click)="exportPdf()">
+      📄 Export PDF
+    </button>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-wrapper">
+    <table *ngIf="!loading && bills.length">
+      <thead>
+        <tr>
+          <th>Bill</th>
+          <th>Date</th>
+          <th>Mode</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let b of bills">
+          <td>#{{ b.id }}</td>
+          <td>{{ b.created_at | date:'dd/MM/yyyy' }}</td>
+          <td>{{ b.payment_mode || '-' }}</td>
+          <td>₹{{ b.total_amount }}</td>
+          <td>
+            <span class="paid" *ngIf="b.payment_status==='PAID'">PAID</span>
+            <span class="pending" *ngIf="b.payment_status!=='PAID'">PENDING</span>
+          </td>
+          <td>
+            <button
+  class="btn-print"
+  (click)="printBill(b.id)"
+  [disabled]="b.payment_status !== 'PAID'"
+  [title]="b.payment_status !== 'PAID' ? 'Payment pending' : 'Print bill'"
+>
+  Print
+</button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="!loading && !bills.length" class="empty">No bills found</p>
+  </div>
+</div>

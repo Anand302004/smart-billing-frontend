@@ -1,0 +1,63 @@
+<div class="sales-dashboard">
+
+  <!-- TOP CARDS -->
+  <div class="top-cards">
+
+    <div class="stat today">
+      <div class="amount">₹ {{ todaySale | number:'1.0-0' }}</div>
+      <div class="label">Today Sales</div>
+    </div>
+
+    <div class="stat month">
+      <div class="amount">₹ {{ monthSale | number:'1.0-0' }}</div>
+      <div class="label">This Month</div>
+    </div>
+
+    <div class="stat life">
+      <div class="amount">₹ {{ lifetimeSale | number:'1.0-0' }}</div>
+      <div class="label">Lifetime Sales</div>
+    </div>
+
+    <div class="stat low" (click)="openLowStock()">
+      <div class="amount">{{ alerts.lowStock.length }}</div>
+      <div class="label">Low Stock</div>
+    </div>
+
+    <div class="stat expiry" (click)="openExpiry()">
+      <div class="amount">{{ alerts.expiring.length }}</div>
+      <div class="label">Expiring Soon</div>
+    </div>
+
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <select [(ngModel)]="range" (change)="loadGraph()">
+      <option value="7days">Last 7 Days</option>
+      <option value="month">This Month</option>
+      <option value="lifetime">Lifetime</option>
+    </select>
+
+    <select [(ngModel)]="chartType">
+      <option value="bar">Bar Chart</option>
+      <option value="line">Line Chart</option>
+    </select>
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-box">
+    <canvas
+      baseChart
+      [type]="chartType"
+      [data]="{
+        labels: chartLabels,
+        datasets: [{
+          data: chartData,
+          label: 'Sales ₹',
+          fill: chartType === 'line'
+        }]
+      }">
+    </canvas>
+  </div>
+
+</div>

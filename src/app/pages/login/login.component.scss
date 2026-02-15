@@ -1,0 +1,88 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background: #f5f6fa;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: background 0.3s, color 0.3s;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.full {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Forgot Password link */
+.forgot-password {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+.forgot-password a {
+  font-size: 0.85rem;
+  color: #2563eb;
+  text-decoration: none;
+}
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* Login button */
+button.mat-raised-button {
+  width: 100%;
+  padding: 0.8rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+button.mat-raised-button:hover {
+  background-color: #115293;
+}
+
+/* Dark Mode */
+body.dark .login-card {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+body.dark .login-card input.mat-input-element {
+  color: #e5e7eb;
+}
+body.dark .login-card .mat-form-field-outline {
+  color: #e5e7eb;
+}
+body.dark button.mat-raised-button {
+  color: #e5e7eb;
+}
+body.dark .forgot-password a {
+  color: #60a5fa;
+}
+
+/* Signup link */
+.signup-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+.signup-link a {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+.signup-link a:hover {
+  text-decoration: underline;
+}

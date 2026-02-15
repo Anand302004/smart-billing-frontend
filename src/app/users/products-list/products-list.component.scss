@@ -1,0 +1,257 @@
+/* ===============================
+   TITLE
+================================= */
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #0f7fe8;
+}
+
+/* ===============================
+   HEADER BAR (TITLE + ADD BUTTON)
+================================= */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* Add Product Button */
+.add-btn {
+  background: #1976d2;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.add-btn:hover {
+  background: #125aa0;
+  transform: scale(1.03);
+}
+
+/* ===============================
+   TABLE WRAPPER
+================================= */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* ===============================
+   TABLE
+================================= */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* Header */
+.user-table thead {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+.user-table th,
+.user-table td {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Rows */
+.user-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.2s ease;
+}
+
+.user-table tbody tr:hover {
+  background: #4496e8;
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================= */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.action-buttons button {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+/* Edit */
+.edit-btn {
+  background: #16a34a;
+  color: #fff;
+}
+
+.edit-btn:hover {
+  background: #22c55e;
+  transform: scale(1.03);
+}
+
+/* Delete */
+.delete-btn {
+  background: #dc2626;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background: #ef4444;
+  transform: scale(1.03);
+}
+
+/* ===============================
+   🌙 DARK MODE
+================================= */
+body.dark .user-table {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+body.dark .user-table thead {
+  background: #020617;
+}
+
+body.dark .user-table tbody tr:hover {
+  background: #1e293b;
+}
+
+body.dark .add-btn {
+  background: #2563eb;
+  color: #fff;
+}
+
+body.dark .edit-btn {
+  background: #15803d;
+}
+
+body.dark .delete-btn {
+  background: #b91c1c;
+}
+
+/* ===============================
+   📱 MOBILE RESPONSIVE
+================================= */
+@media (max-width: 768px) {
+
+  .header-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .add-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .user-table thead {
+    display: none;
+  }
+
+  .user-table,
+  .user-table tbody,
+  .user-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .user-table tr {
+    margin-bottom: 16px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    padding: 14px;
+  }
+
+  body.dark .user-table tr {
+    background: #020617;
+  }
+
+  .user-table td {
+  display: grid;
+  grid-template-columns: 150px 1fr; /* label fixed, value flexible */
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 13px;
+  align-items: center;
+  word-break: break-word;
+}
+
+
+  .user-table td::before {
+  content: attr(data-label);
+  font-weight: 600;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+  body.dark .user-table td::before {
+    color: #94a3b8;
+  }
+
+  /* Mobile action buttons FIX */
+  .action-buttons {
+    margin-top: 10px;
+    margin-right: 30px;
+  }
+
+  .action-buttons button {
+    flex: 1;
+    padding: 6px 0;
+    font-size: 12px;
+    border-radius: 6px;
+  }
+}
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.right-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Search input */
+.search-input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  outline: none;
+  min-width: 12em;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover + focus */
+.search-input:hover,
+.search-input:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+/* Placeholder */
+.search-input::placeholder {
+  color: #94a3b8;
+}

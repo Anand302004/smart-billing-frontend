@@ -1,0 +1,138 @@
+/* ===============================
+   DIALOG CONTAINER
+================================ */
+.dialog-wrapper {
+  padding: 22px;
+  border-radius: 16px;
+}
+
+/* Title */
+.dialog-title {
+  margin-bottom: 18px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* ===============================
+   FORM LAYOUT
+================================ */
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================ */
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* ===============================
+   LIGHT MODE
+================================ */
+:host-context(body:not(.dark)) {
+  .dialog-wrapper {
+    background: #ffffff;
+    color: #020617;
+  }
+
+  .dialog-title {
+    color: #2563eb;
+  }
+
+  mat-form-field {
+    --mdc-outlined-text-field-input-text-color: #020617;
+    --mdc-outlined-text-field-label-text-color: #475569;
+    --mdc-outlined-text-field-outline-color: #cbd5e1;
+    --mdc-outlined-text-field-focus-outline-color: #2563eb;
+  }
+
+  .cancel-btn {
+    color: #dc2626;
+    border-color: #dc2626;
+  }
+}
+
+/* ===============================
+   🌙 DARK MODE
+================================ */
+:host-context(body.dark) {
+
+  .dialog-wrapper {
+    background: #020617;
+    color: #e5e7eb;
+  }
+
+  .dialog-title {
+    color: #38bdf8;
+  }
+
+  mat-form-field {
+    --mdc-outlined-text-field-input-text-color: #e5e7eb;
+    --mdc-outlined-text-field-label-text-color: #94a3b8;
+    --mdc-outlined-text-field-outline-color: #334155;
+    --mdc-outlined-text-field-focus-outline-color: #38bdf8;
+
+    --mat-select-enabled-trigger-text-color: #e5e7eb;
+    --mat-select-focused-enabled-trigger-text-color: #38bdf8;
+    --mat-select-disabled-trigger-text-color: #64748b;
+  }
+
+  input {
+    caret-color: #38bdf8;
+  }
+
+  .mat-mdc-select-panel {
+    background: #020617;
+  }
+
+  .mat-mdc-option {
+    color: #e5e7eb;
+  }
+
+  .mat-mdc-option:hover {
+    background: #1e293b;
+  }
+
+  .cancel-btn {
+    color: #f87171;
+    border-color: #f87171;
+  }
+
+  button[mat-flat-button] {
+    background: #2563eb;
+    color: #ffffff;
+  }
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 480px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .dialog-wrapper {
+    padding: 18px;
+  }
+
+  .actions {
+    justify-content: space-between;
+  }
+}

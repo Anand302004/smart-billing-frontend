@@ -1,0 +1,76 @@
+<div class="subs-container">
+
+  <h2>Subscribed Users</h2>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+
+    <input
+      type="text"
+      placeholder="🔎 Search name, email, plan..."
+      [(ngModel)]="searchText"
+      (input)="applyFilters()" />
+
+    <select
+  [(ngModel)]="planFilter"
+  (change)="applyFilters()">
+
+  <option value="all">All Plans</option>
+  <option value="basic">Basic</option>
+  <option value="pro">Pro</option>
+
+</select>
+
+
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    Loading subscriptions...
+  </div>
+
+  <table *ngIf="!loading">
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Plan</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Remaining</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let user of filteredUsers; trackBy: trackById">
+
+        <td data-label="Name">{{user.name}}</td>
+        <td data-label="Email">{{user.email}}</td>
+        <td data-label="Plan"><span class="plan" [ngClass]="user.plan_name?.toLowerCase()"> {{ user.plan_name }} </span> </td>
+
+        <td data-label="Start">
+          {{user.start_date | date:'dd MMM yyyy'}}
+        </td>
+
+        <td data-label="End">
+          {{user.end_date | date:'dd MMM yyyy'}}
+        </td>
+
+        <td data-label="Remaining">
+          {{getRemainingDays(user.end_date)}} days
+        </td>
+
+        <td data-label="Payment">
+  <span class="payment"
+        [ngClass]="user.payment_status?.toLowerCase()">
+    {{ user.payment_status }}
+  </span>
+</td>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>

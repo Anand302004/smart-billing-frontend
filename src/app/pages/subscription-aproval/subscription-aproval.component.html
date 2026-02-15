@@ -1,0 +1,29 @@
+<h2 class="title">Pending Payments</h2>
+<div class="table-wrapper">
+  <table class="user-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Time</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of pendingPayments">
+      <td data-label="ID">{{ p.id }}</td>
+      <td data-label="User">{{ p.user_name }}</td>
+      <td data-label="Amount">{{ p.amount }}</td>
+      <td data-label="Status">{{ p.status }}</td>
+      <td data-label="Time">{{p.created_at | date:'dd MMM yyyy, hh:mm a'}}</td>
+      <td data-label="Action">
+        <div class="action-buttons">
+          <button (click)="approve(p.id)">Approve</button>
+          <button (click)="reject(p.id)">Reject</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

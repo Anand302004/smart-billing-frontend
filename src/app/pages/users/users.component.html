@@ -1,0 +1,75 @@
+<div class="users-container">
+
+  <h2>User Management</h2>
+  <div class="toolbar">
+
+  <input
+    type="text"
+    placeholder="Search user..."
+    [(ngModel)]="searchText"
+    (input)="applyFilters()"
+  />
+
+  <select
+    [(ngModel)]="statusFilter"
+    (change)="applyFilters()">
+
+    <option value="all">All</option>
+    <option value="active">Active</option>
+    <option value="blocked">Blocked</option>
+
+  </select>
+
+</div>
+
+
+  <div *ngIf="loading" class="loading">
+    Loading users...
+  </div>
+
+  
+
+  <table *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+     <tr *ngFor="let user of filteredUsers; trackBy: trackByUserId">
+
+
+        <td data-label="ID">{{ user.id }}</td>
+        <td data-label="Name">{{ user.name }}</td>
+        <td data-label="Email">{{ user.email }}</td>
+        <td data-label="Role">{{ user.role }}</td>
+
+        <td data-label="Status">
+          <span class="status active" *ngIf="user.is_active">Active</span>
+          <span class="status blocked" *ngIf="!user.is_active">Blocked</span>
+        </td>
+
+        <td data-label="Created">
+          {{ user.created_at | date:'dd MMM yyyy' }}
+        </td>
+
+        <td data-label="Action">
+          <button
+            class="action-btn"
+            [disabled]="user.role?.toLowerCase() === 'admin'"
+            (click)="toggleStatus(user)">
+            {{ user.is_active ? 'Block' : 'Unblock' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>

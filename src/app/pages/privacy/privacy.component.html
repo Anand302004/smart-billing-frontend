@@ -1,0 +1,64 @@
+<div class="privacy-container">
+
+  <h2>Account Privacy & Security</h2>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button
+      [class.active]="activeTab==='update'"
+      (click)="showUpdate()">
+      🛠 Update Account
+    </button>
+
+    <button
+      [class.active]="activeTab==='block'"
+      (click)="showBlock()">
+      🚫 Account Status
+    </button>
+  </div>
+
+  <!-- ================= UPDATE FORM ================= -->
+  <form *ngIf="activeTab==='update'"
+        [formGroup]="updateForm"
+        (ngSubmit)="updateAccount()"
+        class="form-card">
+
+    <label>Name</label>
+    <input
+      type="text"
+      placeholder="Enter new name"
+      formControlName="name">
+
+    <label>Current Password *</label>
+    <input
+      type="password"
+      placeholder="Enter current password"
+      formControlName="currentPassword">
+
+    <label>New Password</label>
+    <input
+      type="password"
+      placeholder="Leave empty if not changing"
+      formControlName="newPassword">
+
+    <button type="submit" class="update-btn">
+      Update Account
+    </button>
+
+  </form>
+
+  <!-- ================= BLOCK INFO ================= -->
+  <div *ngIf="activeTab==='block'" class="form-card info-box">
+    <p>
+      If your account is blocked, please contact admin
+      to reactivate access.
+    </p>
+    
+  </div>
+
+  <!-- MESSAGE -->
+  <p class="message" *ngIf="message">
+    {{ message }}
+  </p>
+
+</div>

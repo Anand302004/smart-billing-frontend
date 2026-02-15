@@ -1,0 +1,66 @@
+<div class="dashboard">
+
+  <!-- ================= TOP STATS ================= -->
+  <div class="stats-grid">
+
+    <div class="stat-card users" routerLink="/admin/users">
+      <h4>Total Users</h4>
+      <p>{{ stats?.totalUsers || 0 }}</p>
+      <span>Registered users</span>
+    </div>
+
+    <div class="stat-card revenue" routerLink="/admin/subscription-users">
+      <h4>Subscription Users</h4>
+      <p>{{ stats?.subscriptionUsers || 0 }}</p>
+      <span>Active plans</span>
+    </div>
+
+    <div class="stat-card reports" routerLink="/admin/subscription-aproval">
+      <h4>Pending Payments</h4>
+      <p>{{ stats?.pendingPayments || 0 }}</p>
+      <span>Need approval</span>
+    </div>
+
+  </div>
+
+  <!-- ================= MIDDLE ================= -->
+  <div class="middle-grid">
+
+    <!-- Recent Users -->
+    <div class="card">
+      <h3>Recent Users</h3>
+
+      <ul class="user-list">
+        <li *ngFor="let user of recentUsers">
+          {{ user.name }}
+        </li>
+      </ul>
+
+      <p *ngIf="recentUsers.length === 0">
+        No recent users
+      </p>
+    </div>
+
+    <!-- System Status -->
+    <div class="card">
+      <h3>System Status</h3>
+
+      <p>🟢 Server: {{ system?.server || 'Not Running' }}</p>
+      <p>🟢 Database: {{ system?.database || 'Problem' }}</p>
+      <p>🟢 API: {{ system?.api || 'Offline' }}</p>
+    </div>
+
+  </div>
+
+  <!-- ================= CHART ================= -->
+  <div class="card full">
+    <h3>Monthly Subscription Overview</h3>
+
+    <!-- ⭐ IMPORTANT WRAPPER -->
+    <div class="chart-wrapper">
+      <canvas id="dashboardChart"></canvas>
+    </div>
+
+  </div>
+
+</div>

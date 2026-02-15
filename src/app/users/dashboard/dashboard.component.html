@@ -1,0 +1,91 @@
+<div class="dashboard">
+
+  <!-- HEADER -->
+  <div class="headers">
+    <h1 class="main-title">Smart Billing Dashboard</h1>
+    
+  </div>
+
+  <!-- SHOP CARD -->
+  <div class="shop-card" *ngIf="activeSubscription">
+    <div class="shop-name" *ngIf="shop">
+      {{ shop.shop_name }}
+    </div>
+    <div class="shop-action" *ngIf="activeSubscription">
+    <button class="shop-btn" (click)="openShopDialog()">
+      {{ shop ? 'Edit ' : 'Add Shop' }}
+    </button>
+  </div>
+
+  </div>
+
+  <!-- ACTIVE SUBSCRIPTION -->
+  <div *ngIf="activeSubscription" class="summary-grid">
+    <div class="summary-card">
+      <h3>Active Plan</h3>
+      <h2>{{ activeSubscription.plan_name }}</h2>
+    </div>
+
+    <div class="summary-card expiry">
+      <h3>Expiry</h3>
+      <h2>{{ activeSubscription.end_date | date }}</h2>
+    </div>
+
+    <div class="summary-card success">
+      <h3>Status</h3>
+      <h2>Active ✅</h2>
+    </div>
+  </div>
+
+  <!-- PLANS -->
+  <h2 class="section-title">Choose Your Plan</h2>
+
+  <div class="plans-grid">
+    <div class="plan-card" *ngFor="let plan of plans">
+      <h2>{{ plan.plan_name }}</h2>
+      <h1>₹{{ plan.price }}</h1>
+      <p>{{ plan.duration_days }} days validity</p>
+
+      <p class="limit">
+        Products:
+        {{ plan.max_products === -1 ? 'Unlimited' : plan.max_products }}
+      </p>
+
+      <button (click)="subscribe(plan.id)">
+        Subscribe
+      </button>
+    </div>
+  </div>
+
+  <!-- QR MODAL -->
+  <div class="qr-overlay" *ngIf="qrCode">
+    <div class="qr-modal">
+
+      <h2>Complete Payment</h2>
+      <p class="amount">Pay ₹{{ qrAmount }}</p>
+
+      <div class="qr-box">
+        <img [src]="qrCode" alt="UPI QR">
+      </div>
+
+      <button
+        class="confirm-btn"
+        *ngIf="paymentStatus === 'PENDING'"
+        (click)="confirmPayment()"
+      >
+        I Have Paid
+      </button>
+
+      <p class="wait-msg" *ngIf="paymentStatus === 'USER_CONFIRMED'">
+        ⏳ Waiting for admin approval
+      </p>
+
+      <button class="close-btn" (click)="closeQR()">Close</button>
+    </div>
+  </div>
+
+  <div class="loading" *ngIf="loadingQR">
+    Generating QR...
+  </div>
+
+</div>
