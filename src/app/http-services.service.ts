@@ -1,127 +1,110 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpServicesService {
 
-  private adminUrl = 'http://localhost:3000/admin';
+  private API = environment.apiUrl;
+
+  private adminUrl = `${this.API}/admin`;
+  private paymentsUrl = `${this.API}/payments`;
+  private dashboardapi = `${this.API}/adminDashboard`;
 
   constructor(private http: HttpClient) {}
 
   /* ================= AUTH ================= */
-refreshToken() {
-  return this.http.post<any>(
-    'http://localhost:3000/api/auth/refresh',
-    {},
-    { withCredentials: true }
-  );
-}
 
+  refreshToken() {
+    return this.http.post<any>(
+      `${this.API}/api/auth/refresh`,
+      {},
+      { withCredentials: true }
+    );
+  }
 
-
-logout() {
-  return this.http.post(
-    'http://localhost:3000/api/auth/logout',
-    {},
-    { withCredentials: true }
-  );
-}
-
-
-
-  private getAuthHeaders() {
-  const token = localStorage.getItem('token');
-
-  return {
-    headers: new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    })
-  };
-}
-
+  logout() {
+    return this.http.post(
+      `${this.API}/api/auth/logout`,
+      {},
+      { withCredentials: true }
+    );
+  }
 
   sendOTP(info: any) {
     return this.http.post(
-      'http://localhost:3000/verification/send-email',
+      `${this.API}/verification/send-email`,
       info
     );
   }
 
   signup(info: any) {
     return this.http.post(
-      'http://localhost:3000/api/auth/signup',
+      `${this.API}/api/auth/signup`,
       info
     );
   }
 
   login(login_data: any) {
     return this.http.post(
-      'http://localhost:3000/api/auth/login',
+      `${this.API}/api/auth/login`,
       login_data,
-    { withCredentials: true }
+      { withCredentials: true }
     );
   }
-  
-  updateAccount(data:any) {
-  return this.http.put(
-    'http://localhost:3000/api/auth/update',
-    data
-  );
-}
 
+  updateAccount(data: any) {
+    return this.http.put(
+      `${this.API}/api/auth/update`,
+      data
+    );
+  }
 
   getAllUsers() {
-  return this.http.get<any>(
-    `http://localhost:3000/api/auth/users`,
-    this.getAuthHeaders()
-  );
-}
+    return this.http.get<any>(
+      `${this.API}/api/auth/users`,
+      this.getAuthHeaders()
+    );
+  }
 
-disableUser(id: number) {
-  return this.http.put(
-    `http://localhost:3000/api/auth/disable/${id}`,
-    {},
-    this.getAuthHeaders()
-  );
-}
+  disableUser(id: number) {
+    return this.http.put(
+      `${this.API}/api/auth/disable/${id}`,
+      {},
+      this.getAuthHeaders()
+    );
+  }
 
-enableUser(id: number) {
-  return this.http.put(
-    `http://localhost:3000/api/auth/enable/${id}`,
-    {},
-    this.getAuthHeaders()
-  );
-}
-
+  enableUser(id: number) {
+    return this.http.put(
+      `${this.API}/api/auth/enable/${id}`,
+      {},
+      this.getAuthHeaders()
+    );
+  }
 
   checkEmail(info: any) {
     return this.http.post(
-      'http://localhost:3000/verification/forget-password',
+      `${this.API}/verification/forget-password`,
       info
     );
   }
 
   resetPassword(info: any) {
     return this.http.put(
-      'http://localhost:3000/verification/reset-password',
+      `${this.API}/verification/reset-password`,
       info
     );
   }
 
   /* ================= SUBSCRIPTIONS ================= */
 
-   private paymentsUrl = 'http://localhost:3000/payments';
-
-  
-
-  /* ================= SUBSCRIPTIONS ================= */
-
   getSubscriptionUsers() {
-  return this.http.get<any>(
-    `${this.paymentsUrl}/subscription-users`
+    return this.http.get<any>(
+      `${this.paymentsUrl}/subscription-users`
     );
   }
 
@@ -144,7 +127,6 @@ enableUser(id: number) {
     );
   }
 
-  /* ✅ USER CONFIRM (NOT ADMIN) */
   userConfirmPayment(paymentId: number, token: string): Observable<any> {
     return this.http.post(
       `${this.paymentsUrl}/confirm-payment`,
@@ -153,46 +135,51 @@ enableUser(id: number) {
     );
   }
 
-  /* ================= ADMIN METHODS ================= */
+  /* ================= ADMIN ================= */
 
-  // 1️⃣ Fetch all pending payments (USER_CONFIRMED)
   getPendingPayments(): Observable<any[]> {
-    const token = localStorage.getItem('token'); // admin token
-    return this.http.get<any[]>(`${this.adminUrl}/pending-payments`, { headers: this.auth(token!) });
+    const token = localStorage.getItem('token');
+    return this.http.get<any[]>(
+      `${this.adminUrl}/pending-payments`,
+      { headers: this.auth(token!) }
+    );
   }
 
-  // 2️⃣ Approve a payment (mark SUCCESS + activate subscription)
   approvePayment(paymentId: number): Observable<any> {
-    const token = localStorage.getItem('token'); // admin token
-    return this.http.post(`${this.adminUrl}/confirm-subscription-payment`,
+    const token = localStorage.getItem('token');
+    return this.http.post(
+      `${this.adminUrl}/confirm-subscription-payment`,
       { paymentId },
       { headers: this.auth(token!) }
     );
   }
 
-  // 3 Reject a payment
   rejectPayment(paymentId: number): Observable<any> {
-  const token = localStorage.getItem('token'); // 👈 admin token
+    const token = localStorage.getItem('token');
+    return this.http.delete(
+      `${this.adminUrl}/rejected-request/${paymentId}`,
+      { headers: this.auth(token!) }
+    );
+  }
 
-  return this.http.delete(
-    `${this.adminUrl}/rejected-request/${paymentId}`,
-    {
-      headers: this.auth(token!)
-    }
-  );
-}
+  /* ================= ADMIN DASHBOARD ================= */
 
-
-/* ================= ADMIN DASHBOARD APIS ================= */
- private dashboardapi = 'http://localhost:3000/adminDashboard';
-getStats() {
+  getStats() {
     return this.http.get<any>(`${this.dashboardapi}/stats`);
   }
 
-  /* ================= PRIVATE HELPERS ================= */
+  /* ================= HELPERS ================= */
+
+  private getAuthHeaders() {
+    const token = localStorage.getItem('token');
+    return {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      })
+    };
+  }
+
   private auth(token: string) {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
-  
-  
 }

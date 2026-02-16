@@ -64,6 +64,7 @@ export class PrivacyComponent {
           this.updateForm.reset();
         },
         error: (err) => {
+          
           this.message =
             err.error?.message || "Update failed";
         }

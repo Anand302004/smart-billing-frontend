@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class SalesService {
-  private baseUrl = 'http://localhost:3000/dashboard'; // Use proxy for dev
+
+  private baseUrl = `${environment.apiUrl}/dashboard`;
 
   constructor(private http: HttpClient) {}
 
@@ -12,7 +14,9 @@ export class SalesService {
   }
 
   getSalesGraph(range: string) {
-    return this.http.get<any[]>(`${this.baseUrl}/sales-graph?range=${range}`);
+    return this.http.get<any[]>(
+      `${this.baseUrl}/sales-graph?range=${range}`
+    );
   }
 
   getAlerts() {

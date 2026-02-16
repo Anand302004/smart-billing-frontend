@@ -8,9 +8,9 @@ let isRefreshing = false;
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   const authService = inject(HttpServicesService);
-
   const token = localStorage.getItem('token');
 
+  // ✅ attach token
   if (token) {
     req = req.clone({
       setHeaders: {
@@ -23,14 +23,23 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
     catchError((error) => {
 
-      // ✅ silently handle expired token
-      if (error.status === 401 && !isRefreshing) {
+      /* ===============================
+         🚫 APIs where refresh NOT allowed
+      =============================== */
+
+      const skipRefresh =
+        req.url.includes('/login') ||
+        req.url.includes('/signup') ||
+        req.url.includes('/update');
+
+      // ✅ only refresh when real auth failure
+      if (error.status === 401 && !isRefreshing && !skipRefresh) {
 
         isRefreshing = true;
 
         return authService.refreshToken().pipe(
 
-          switchMap((res:any) => {
+          switchMap((res: any) => {
 
             isRefreshing = false;
 
@@ -42,13 +51,14 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
               }
             });
 
-            // 🔥 retry without throwing error
             return next(retryReq);
           }),
 
           catchError(err => {
+
             isRefreshing = false;
 
+            // ✅ real session expired
             localStorage.clear();
             window.location.href = '/login';
 
@@ -57,11 +67,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         );
       }
 
-      // ❌ don't spam console
-      if (error.status === 401) {
-        return throwError(() => null);
-      }
-
+      // ✅ normal error pass
       return throwError(() => error);
     })
   );

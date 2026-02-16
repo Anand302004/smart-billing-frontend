@@ -1,20 +1,21 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 
 
 @Injectable({ providedIn: 'root' })
 export class BillingService {
-  private API = 'http://localhost:3000/billing';
+
+  private API = `${environment.apiUrl}/billing`;
 
   constructor(private http: HttpClient) {}
 
   createBill(payload: {
-  items: any[],
-  discount_percent: number
-}) {
-  return this.http.post(`${this.API}/create`, payload);
-}
-
+    items: any[],
+    discount_percent: number
+  }) {
+    return this.http.post(`${this.API}/create`, payload);
+  }
 
   generateQR(billId: number, amount: number) {
     return this.http.post(`${this.API}/generate-qr`, { billId, amount });
@@ -27,10 +28,12 @@ export class BillingService {
   cashPayment(billId: number) {
     return this.http.post(`${this.API}/cash-payment`, { billId });
   }
+
   getBillById(id: number) {
-  return this.http.get(`${this.API}/${id}`);
-}
-getBillingHistory(filters?: {
+    return this.http.get(`${this.API}/${id}`);
+  }
+
+  getBillingHistory(filters?: {
     from?: string;
     to?: string;
     mode?: string;
@@ -47,19 +50,19 @@ getBillingHistory(filters?: {
     );
   }
 
-exportPdf(filters: any) {
-  const params: any = {};
+  exportPdf(filters: any) {
+    let params = new HttpParams();
 
-  if (filters.from) params.from = filters.from;
-  if (filters.to) params.to = filters.to;
-  if (filters.mode) params.mode = filters.mode;
+    if (filters.from) params = params.set('from', filters.from);
+    if (filters.to) params = params.set('to', filters.to);
+    if (filters.mode) params = params.set('mode', filters.mode);
 
-  return this.http.get(
-    'http://localhost:3000/billing/export-pdf',
-    {
-      params,
-      responseType: 'blob'
-    }
-  );
-}
+    return this.http.get(
+      `${this.API}/export-pdf`,
+      {
+        params,
+        responseType: 'blob'
+      }
+    );
+  }
 }
