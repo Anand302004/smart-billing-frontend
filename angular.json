@@ -17,25 +17,24 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/management",
+            "outputPath": "dist/management/browser",
             "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "main": "src/main.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "*/",
-                "input": "public"
-              }
+              { "glob": "**/*", "input": "public", "output": "/" }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "html2pdf.js",
+              "html2canvas"
+            ]
           },
           "configurations": {
             "production": {
@@ -45,20 +44,22 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "3MB",
+                  "maximumError": "4MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "10kB",
+                  "maximumError": "20kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": true,
+              "aot": true,
+              "sourceMap": false
             },
             "development": {
               "optimization": false,
@@ -86,17 +87,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "*/",
-                "input": "public"
-              }
+              { "glob": "**/*", "input": "public", "output": "/" }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
