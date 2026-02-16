@@ -46,24 +46,28 @@ export class BillingPrintComponent implements OnInit {
     window.print();
   }
 
-  downloadPdf() {
-    const element = document.getElementById('receipt');
-    if (!element) return;
+  async downloadPdf() {
+  const element = document.getElementById('receipt');
+  if (!element) return;
 
-    const options = {
-      margin: 0,
-      filename: `Bill_${this.bill.id}.pdf`,
-      image: { type: 'jpeg' as 'jpeg', quality: 1 },
-      html2canvas: { scale: 3 },
-      jsPDF: {
-        unit: 'mm' as 'mm',
-        format: 'a4' as 'a4',
-        orientation: 'portrait' as 'portrait'
-      }
-    };
+  // dynamic import
+  const html2pdf = (await import('html2pdf.js')).default;
 
-    html2pdf().from(element).set(options).save();
-  }
+  const options = {
+    margin: 0,
+    filename: `Bill_${this.bill.id}.pdf`,
+    image: { type: 'jpeg' as 'jpeg', quality: 1 },
+    html2canvas: { scale: 3 },
+    jsPDF: {
+      unit: 'mm' as 'mm',
+      format: 'a4' as 'a4',
+      orientation: 'portrait' as 'portrait'
+    }
+  };
+
+  html2pdf().from(element).set(options).save();
+}
+
 
   goBack() {
     this.router.navigate(['/users/billing/history']);
