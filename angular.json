@@ -55,7 +55,6 @@
               ],
               "outputHashing": "all",
               "optimization": true,
-              "buildOptimizer": true,
               "aot": true
             },
             "development": {
