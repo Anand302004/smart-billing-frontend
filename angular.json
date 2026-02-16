@@ -15,11 +15,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "browser": "src/main.ts",
             "outputPath": "dist/management/browser",
             "index": "src/index.html",
+            "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -42,8 +42,16 @@
                 }
               ],
               "budgets": [
-                { "type": "initial", "maximumWarning": "3MB", "maximumError": "4MB" },
-                { "type": "anyComponentStyle", "maximumWarning": "10kB", "maximumError": "20kB" }
+                {
+                  "type": "initial",
+                  "maximumWarning": "3MB",
+                  "maximumError": "4MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "10kB",
+                  "maximumError": "20kB"
+                }
               ],
               "outputHashing": "all",
               "optimization": true,
@@ -61,8 +69,12 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "production": { "buildTarget": "management:build:production" },
-            "development": { "buildTarget": "management:build:development" }
+            "production": {
+              "buildTarget": "management:build:production"
+            },
+            "development": {
+              "buildTarget": "management:build:development"
+            }
           },
           "defaultConfiguration": "development"
         },
@@ -88,5 +100,7 @@
       }
     }
   },
-  "cli": { "analytics": "7ebbb5b7-af40-4163-b213-6f5a7ba2976b" }
+  "cli": {
+    "analytics": "7ebbb5b7-af40-4163-b213-6f5a7ba2976b"
+  }
 }
