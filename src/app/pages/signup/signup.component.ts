@@ -27,7 +27,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SignupComponent {
   
   signupForm: FormGroup;
-  otpSent = false;
+  // otpSent = false;
 
   constructor(
     private fb: FormBuilder,
@@ -39,41 +39,41 @@ export class SignupComponent {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      otp: [''] // ❗ initially not required
+      // otp: [''] // ❗ initially not required
     });
   }
 
-  generateOtp() {
-    const emailControl = this.signupForm.get('email');
+  // generateOtp() {
+  //   const emailControl = this.signupForm.get('email');
 
-    if (!emailControl || emailControl.invalid) {
-      this.snackBar.open('Enter a valid email address', '', { duration: 2500 });
-      return;
-    }
+  //   if (!emailControl || emailControl.invalid) {
+  //     this.snackBar.open('Enter a valid email address', '', { duration: 2500 });
+  //     return;
+  //   }
 
-    const data = {
-      email: emailControl.value
-    };
+  //   const data = {
+  //     email: emailControl.value
+  //   };
 
-    this.http.sendOTP(data).subscribe({
-      next: () => {
-        this.otpSent = true;
+  //   this.http.sendOTP(data).subscribe({
+  //     next: () => {
+  //       this.otpSent = true;
 
-        // OTP required only after send
-        this.signupForm.get('otp')?.setValidators([Validators.required]);
-        this.signupForm.get('otp')?.updateValueAndValidity();
+  //       // OTP required only after send
+  //       this.signupForm.get('otp')?.setValidators([Validators.required]);
+  //       this.signupForm.get('otp')?.updateValueAndValidity();
 
-        this.snackBar.open('OTP sent to your email 📩', '', { duration: 2500 });
-      },
-      error: (error: any) => {
-        this.snackBar.open(
-          error?.error?.message || 'Failed to send OTP',
-          '',
-          { duration: 2500 }
-        );
-      }
-    });
-  }
+  //       this.snackBar.open('OTP sent to your email 📩', '', { duration: 2500 });
+  //     },
+  //     error: (error: any) => {
+  //       this.snackBar.open(
+  //         error?.error?.message || 'Failed to send OTP',
+  //         '',
+  //         { duration: 2500 }
+  //       );
+  //     }
+  //   });
+  // }
 
   submit() {
     if (this.signupForm.invalid) {
